@@ -1,0 +1,36 @@
+{
+  "name": "vite-template-solid",
+  "version": "0.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build --mode production",
+    "build:analyse": "vite build --mode analyse",
+    "preview": "vite preview"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@eslint/js": "^9.28.0",
+    "@types/node": "^22.15.30",
+    "eslint": "^9.28.0",
+    "eslint-plugin-solid": "^0.14.5",
+    "globals": "^16.2.0",
+    "lightningcss": "^1.30.1",
+    "prettier": "^3.5.3",
+    "sass": "^1.89.1",
+    "terser": "^5.41.0",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.33.1",
+    "vite": "^6.0.0",
+    "vite-bundle-analyzer": "^0.22.0",
+    "vite-plugin-solid": "^2.11.6",
+    "vite-tsconfig-paths": "^5.1.4"
+  },
+  "dependencies": {
+    "@solid-primitives/i18n": "^2.2.1",
+    "@solidjs/router": "^0.15.3",
+    "ky": "^1.8.1",
+    "solid-js": "^1.9.5"
+  }
+}
