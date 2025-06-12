@@ -17,4 +17,7 @@ export default (params: VITE_EXPORT_PARAMS): InlineConfig => ({
       "@": fileURLToPath(new URL("../src", import.meta.url)),
     },
   },
+  preview: {
+    port: 3000,
+  },
 });

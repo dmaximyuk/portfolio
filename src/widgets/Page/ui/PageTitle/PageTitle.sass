@@ -3,13 +3,18 @@
 .PageTitle
   display: flex
   align-items: flex-end
-  padding-bottom: 90px
+  padding: 60px 70px 90px
+
+  &__container
+    width: 100% !important
+    max-width: none !important
+    margin: 0 !important
 
   +media-up("lg")
-    padding-bottom: calc(18.5px * 2)
+    padding: calc(18.5px * 2)
 
   +media-up("md")
-    padding-bottom: 18.5px
+    padding: 18.5px
 
   &__title
     text-align: left

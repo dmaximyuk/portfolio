@@ -9,6 +9,7 @@ export default (params: VITE_EXPORT_PARAMS) =>
     ...defaultConfig(params),
     base: "/",
     build: {
+      target: "es2015",
       sourcemap: false,
       cssCodeSplit: false,
       cssMinify: "lightningcss",

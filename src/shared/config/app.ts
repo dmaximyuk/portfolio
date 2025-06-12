@@ -1,4 +1,4 @@
-import { HeaderElement } from "@/shared/models";
+import { FooterElement, HeaderElement } from "@/shared/models";
 
 export const headerItems: Array<HeaderElement> = [
   {
@@ -24,5 +24,38 @@ export const headerItems: Array<HeaderElement> = [
     id: "contact",
     to: "/contact",
     label: "navigation.contact",
+  },
+];
+
+export const footerItems: Array<FooterElement> = [
+  {
+    header: "navigation.contact",
+    children: [
+      {
+        id: "test",
+        label: "navigation.contact",
+        to: "/",
+      },
+      {
+        id: "test",
+        label: "navigation.contact",
+        to: "/",
+      },
+    ],
+  },
+  {
+    header: "navigation.about",
+    children: [
+      {
+        id: "test",
+        label: "navigation.about",
+        to: "/",
+      },
+      {
+        id: "test",
+        label: "navigation.about",
+        to: "/",
+      },
+    ],
   },
 ];

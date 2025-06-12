@@ -6,6 +6,7 @@ import { Dynamic } from "solid-js/web";
 interface SectionProps extends JSX.HTMLAttributes<HTMLElement> {
   Component?: "footer" | "section";
   fullScreen?: boolean;
+  containerClass?: string;
 }
 
 const defaultProps: Omit<SectionProps, ""> = {
@@ -19,6 +20,7 @@ const Section: Component<SectionProps> = (props) => {
     "class",
     "classList",
     "Component",
+    "containerClass",
   ]);
 
   return (
@@ -31,7 +33,14 @@ const Section: Component<SectionProps> = (props) => {
         ...local.classList,
       }}
     >
-      <div class={"Section__container"}>{local.children}</div>
+      <div
+        class={"Section__container"}
+        classList={{
+          [`${local.containerClass}`]: !!local.containerClass,
+        }}
+      >
+        {local.children}
+      </div>
     </Dynamic>
   );
 };

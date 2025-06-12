@@ -59,7 +59,11 @@ const PageTitle: Component<PageTitleProps> = (props) => {
   });
 
   return (
-    <Section class={"PageTitle"} fullScreen>
+    <Section
+      class={"PageTitle"}
+      containerClass={"PageTitle__container"}
+      fullScreen
+    >
       <h1 ref={(r) => (textRef = r)} class={"PageTitle__title"}>
         {props.children}
       </h1>

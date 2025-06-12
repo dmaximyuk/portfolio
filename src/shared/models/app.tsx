@@ -6,3 +6,12 @@ export interface HeaderElement {
   to: string;
   label: keyof FlattedDict;
 }
+
+export interface FooterElement {
+  header: keyof FlattedDict;
+  children: Array<{
+    id: string;
+    label: keyof FlattedDict;
+    to: string;
+  }>;
+}

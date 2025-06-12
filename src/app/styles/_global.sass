@@ -1,3 +1,13 @@
+:root
+  --round-default: 44px
+  --safe_area_inset_bottom: 0
+
+  @supports (padding-top: constant(safe-area-inset-bottom))
+    --safe_area_inset_bottom: constant(safe-area-inset-bottom)
+
+  @supports (padding-top: env(safe-area-inset-bottom))
+    --safe_area_inset_bottom: env(safe-area-inset-bottom)
+
 *
   box-sizing: border-box
 
@@ -8,11 +18,9 @@ html, body
   font:
     family: "Manrope", "sans-serif"
     weight: 500
-  background: var(--background)
+  background: var(--background) !important
   color: var(--font-color)
   text-rendering: optimizeLegibility
-
-  --round-default: 44px
 
 body
   -webkit-font-smoothing: antialiased

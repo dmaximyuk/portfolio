@@ -37,6 +37,10 @@ const Poster: Component<PosterProps> = () => {
   };
 
   onMount(() => {
+    if (divRef) {
+      divRef.style.transform = `scale(${window.scrollY > 200 ? "0.73" : "1"})`;
+    }
+
     window.addEventListener("scroll", onScroll, { passive: true });
   });
 
