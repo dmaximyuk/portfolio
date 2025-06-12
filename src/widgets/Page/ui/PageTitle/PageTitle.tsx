@@ -1,12 +1,9 @@
 import "./PageTitle.sass";
 
-import { Component, JSX, onMount } from "solid-js";
+import { onCleanup, onMount, type Component, type JSX } from "solid-js";
+import { animate } from "animejs";
 
 import { Section } from "@/widgets";
-
-import { gsap } from "gsap";
-
-import { isIOS } from "@/shared/lib";
 
 interface PageTitleProps
   extends Omit<JSX.HTMLAttributes<HTMLElement>, "children"> {
@@ -15,29 +12,55 @@ interface PageTitleProps
 
 const PageTitle: Component<PageTitleProps> = (props) => {
   let textRef: HTMLElement | null = null;
+  let ticking = false;
+
+  const handleScroll = () => {
+    if (!textRef) return;
+
+    const scrollY = window.scrollY;
+    const start = 100;
+    const max = 500;
+
+    if (scrollY <= start) {
+      return animate(textRef, {
+        translateY: 0,
+        opacity: 1,
+        duration: 200,
+        ease: "easeOutQuad",
+      });
+    }
+
+    const progress = Math.min((scrollY - start) / (max - start), 1);
+    animate(textRef, {
+      translateY: -150 * progress,
+      opacity: 1 - progress,
+      duration: 200,
+      ease: "easeOutQuad",
+    });
+  };
+
+  const onScroll = () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        handleScroll();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  };
 
   onMount(() => {
-    if (!textRef || isIOS) return;
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  });
 
-    gsap.to(textRef, {
-      opacity: 0,
-      ease: "none",
-      scrollTrigger: {
-        trigger: textRef,
-        start: "+100",
-        scrub: true,
-      },
-    });
+  onCleanup(() => {
+    window.removeEventListener("scroll", onScroll);
   });
 
   return (
     <Section class={"PageTitle"} fullScreen>
-      <h1
-        id={"parallax-layer"}
-        ref={(r) => (textRef = r)}
-        class={"PageTitle__title"}
-        data-speed={!isIOS && "clamp(1.75)"}
-      >
+      <h1 ref={(r) => (textRef = r)} class={"PageTitle__title"}>
         {props.children}
       </h1>
     </Section>

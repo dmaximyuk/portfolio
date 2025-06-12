@@ -1,5 +1,6 @@
 /* @refresh reload */
 import "./styles/index.sass";
+import "lenis/dist/lenis.css";
 import "@fontsource/manrope/500.css";
 
 import { render } from "solid-js/web";

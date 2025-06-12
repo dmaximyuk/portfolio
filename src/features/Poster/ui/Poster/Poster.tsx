@@ -1,36 +1,50 @@
 import "./Poster.sass";
 
-import { Component, JSX, onMount, splitProps } from "solid-js";
-
-import { gsap } from "gsap";
+import { Component, JSX, onMount, onCleanup, splitProps } from "solid-js";
+import { animate } from "animejs";
 
 import { PhotoMe } from "@/shared/assets/photos";
 import { VideoMe } from "@/shared/assets/video";
-
-import { isIOS } from "@/shared/lib";
 
 interface PosterProps extends JSX.HTMLAttributes<HTMLElement> {
   size: "l" | "xl";
 }
 
 const Poster: Component<PosterProps> = (props) => {
+  let ticking = false;
   let divRef: HTMLDivElement | null = null;
   const [local] = splitProps(props, ["size"]);
 
-  onMount(() => {
-    if (!divRef || isIOS) return;
+  const handleScroll = () => {
+    if (!divRef) return;
 
-    gsap.to(divRef, {
-      scale: 0.73,
-      ease: "none",
-      scrollTrigger: {
-        pinType: "transform",
-        trigger: divRef,
-        start: "top top",
-        end: "+100",
-        scrub: true,
-      },
+    let scale = 1;
+    scale -= window.scrollY / 1000;
+
+    if (scale < 0.73) return;
+
+    animate(divRef, {
+      scale: scale,
+      duration: 50,
     });
+  };
+
+  const onScroll = () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        handleScroll();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  };
+
+  onMount(() => {
+    window.addEventListener("scroll", onScroll, { passive: true });
+  });
+
+  onCleanup(() => {
+    window.removeEventListener("scroll", onScroll);
   });
 
   return (
@@ -40,13 +54,9 @@ const Poster: Component<PosterProps> = (props) => {
       classList={{
         [`Poster_size-${local.size}`]: true,
       }}
-      style={
-        isIOS
-          ? {
-              transform: `scale(0.73)`,
-            }
-          : {}
-      }
+      style={{
+        transition: "all .05s",
+      }}
     >
       <video
         class={"Poster__video"}
