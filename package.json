@@ -28,8 +28,10 @@
     "vite-tsconfig-paths": "^5.1.4"
   },
   "dependencies": {
+    "@fontsource/manrope": "^5.2.6",
     "@solid-primitives/i18n": "^2.2.1",
     "@solidjs/router": "^0.15.3",
+    "gsap": "^3.13.0",
     "ky": "^1.8.1",
     "solid-js": "^1.9.5"
   }

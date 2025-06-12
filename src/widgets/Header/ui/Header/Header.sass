@@ -1,0 +1,61 @@
+@use "@/app/styles/mixins/media" as *
+
+.Header
+  top: 0
+  left: 0
+  position: fixed
+  width: 100vw
+  padding: 60px 70px 0
+  z-index: 10
+
+  +media-up("lg")
+    padding: calc(18.5px * 2) calc(18.5px * 2) 0
+
+  +media-up("md")
+    padding: 18.5px 18.5px 0
+
+  &__container
+    width: 100%
+    max-height: 132px
+    display: flex
+    justify-content: space-between
+    gap: 10px
+
+  &[data-mode="desktop"]
+    .Header__links
+      display: flex
+      align-items: center
+      list-style: none
+      padding: 6px 6px 6px 2px
+      backdrop-filter: blur(20px)
+      background-color: #ffffff87
+      border-radius: 14px
+
+      +media-up("lg")
+        display: none
+
+      &-item
+        display: flex
+        align-items: stretch
+
+      &-btn
+        background-color: var(--secondary)
+        border-radius: 10px
+        padding: 10px 18px !important
+        transition: all .2s cubic-bezier(.25, .46, .45, .94)
+        box-shadow: 0 1px 2px #1018280f, 0 1px 3px #1018281a
+
+      &-item, &-link
+        color: var(--font-color)
+        text-decoration: none
+
+      &-link
+        padding-left: 10px
+        padding-right: 10px
+        transition: all .2s cubic-bezier(.55, .055, .675, .19)
+
+        &:hover
+          opacity: .45
+
+        &--active:not(.Header__links-btn)
+          opacity: .25

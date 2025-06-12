@@ -1,5 +1,6 @@
 /* @refresh reload */
 import "./styles/index.sass";
+import "@fontsource/manrope/500.css";
 
 import { render } from "solid-js/web";
 import { i18n } from "@/shared/lib";

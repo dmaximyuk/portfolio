@@ -10,7 +10,7 @@ export default (params: VITE_EXPORT_PARAMS) =>
     base: "/",
     build: {
       sourcemap: false,
-      cssCodeSplit: true,
+      cssCodeSplit: false,
       cssMinify: "lightningcss",
       minify: "terser",
       manifest: false,

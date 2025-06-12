@@ -1,0 +1,18 @@
+=size($size)
+  height: $size
+  width: $size
+
+
+.Poster
+  +size(132px)
+  position: relative
+  background: black
+  overflow: hidden
+  border-radius: 44px
+  transform-origin: top left
+  transition: transform .3s
+  filter: contrast(1.1)
+
+  &__video
+    +size(100%)
+    object-fit: cover

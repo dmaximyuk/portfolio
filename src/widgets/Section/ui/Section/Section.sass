@@ -1,0 +1,20 @@
+@use "@/app/styles/mixins/media" as *
+
+.Section
+  width: 100%
+
+  &--full-screen
+    height: 100vh
+    position: relative
+
+  &__container
+    width: 82%
+    max-width: 82%
+    margin: 0 auto
+
+    +media-up("lg")
+      max-width: none
+      width: calc(100% - 18.5px * 4)
+
+    +media-up("md")
+      width: calc(100% - 18.5px * 2)
