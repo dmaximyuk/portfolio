@@ -1,6 +1,6 @@
 import "./Home.sass";
 
-import { type Component, type JSX, createSignal } from "solid-js";
+import { type Component, type JSX } from "solid-js";
 
 import { Page, Header, Section, Footer, PageTitle } from "@/widgets";
 import { Poster } from "@/features";
@@ -10,21 +10,9 @@ import { headerItems } from "@/shared/config";
 interface HomeProps extends JSX.HTMLAttributes<HTMLElement> {}
 
 const Home: Component<HomeProps> = () => {
-  const [scrolled, setScrolled] = createSignal<boolean>(false);
-
   return (
     <Page
-      onScroll={() =>
-        ((window.pageYOffset > 200 && !scrolled()) ||
-          (window.pageYOffset < 200 && scrolled())) &&
-        setScrolled(window.pageYOffset > 200)
-      }
-      header={
-        <Header
-          items={headerItems}
-          before={<Poster size={scrolled() ? "l" : "xl"} />}
-        />
-      }
+      header={<Header items={headerItems} before={<Poster />} />}
       footer={<Footer />}
     >
       <PageTitle>

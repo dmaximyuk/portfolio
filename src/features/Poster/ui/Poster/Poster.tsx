@@ -1,19 +1,16 @@
 import "./Poster.sass";
 
-import { Component, JSX, onMount, onCleanup, splitProps } from "solid-js";
+import { type Component, type JSX, onMount, onCleanup } from "solid-js";
 import { animate } from "animejs";
 
 import { PhotoMe } from "@/shared/assets/photos";
 import { VideoMe } from "@/shared/assets/video";
 
-interface PosterProps extends JSX.HTMLAttributes<HTMLElement> {
-  size: "l" | "xl";
-}
+interface PosterProps extends JSX.HTMLAttributes<HTMLElement> {}
 
-const Poster: Component<PosterProps> = (props) => {
+const Poster: Component<PosterProps> = () => {
   let ticking = false;
   let divRef: HTMLDivElement | null = null;
-  const [local] = splitProps(props, ["size"]);
 
   const handleScroll = () => {
     if (!divRef) return;
@@ -51,9 +48,6 @@ const Poster: Component<PosterProps> = (props) => {
     <div
       ref={(el) => (divRef = el)}
       class={"Poster"}
-      classList={{
-        [`Poster_size-${local.size}`]: true,
-      }}
       style={{
         transition: "all .05s",
       }}

@@ -6,7 +6,9 @@ import { Router } from "@solidjs/router";
 import { routes } from "./routes";
 
 const App: Component = () => {
-  const lenis = new Lenis();
+  const lenis = new Lenis({
+    duration: 1.1,
+  });
 
   const smoothRaf = (time: number) => {
     lenis.raf(time);
@@ -14,7 +16,7 @@ const App: Component = () => {
   };
 
   onMount(() => {
-    smoothRaf(1000);
+    requestAnimationFrame(smoothRaf);
   });
 
   return <Router>{routes}</Router>;
