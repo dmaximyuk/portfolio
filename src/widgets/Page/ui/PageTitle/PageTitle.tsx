@@ -19,7 +19,9 @@ const PageTitle: Component<PageTitleProps> = (props) => {
 
     const scrollY = window.scrollY;
     const start = 100;
-    const max = 500;
+    const stop = window.innerHeight;
+
+    if (scrollY > stop || scrollY < start / 2) return;
 
     if (scrollY <= start) {
       return animate(textRef, {
@@ -30,7 +32,7 @@ const PageTitle: Component<PageTitleProps> = (props) => {
       });
     }
 
-    const progress = Math.min((scrollY - start) / (max - start), 1);
+    const progress = Math.min((scrollY - start) / (stop - start), 1);
     animate(textRef, {
       translateY: -150 * progress,
       opacity: 1 - progress,
@@ -39,7 +41,7 @@ const PageTitle: Component<PageTitleProps> = (props) => {
     });
   };
 
-  const onScroll = () => {
+  const onHandleScroll = () => {
     if (!ticking) {
       window.requestAnimationFrame(() => {
         handleScroll();
@@ -50,12 +52,11 @@ const PageTitle: Component<PageTitleProps> = (props) => {
   };
 
   onMount(() => {
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onHandleScroll, { passive: true });
   });
 
   onCleanup(() => {
-    window.removeEventListener("scroll", onScroll);
+    window.removeEventListener("scroll", onHandleScroll);
   });
 
   return (
