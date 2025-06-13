@@ -57,7 +57,7 @@ const Loading: Component<LoadingProps> = (props) => {
       .call(() => setTimeout(() => setShowChildren(true), 1000));
   });
 
-  if (showChildren()) {
+  if (showChildren() || localStorage.getItem("loading") === "0") {
     return props.children;
   }
 
