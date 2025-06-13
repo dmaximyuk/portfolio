@@ -1,0 +1,27 @@
+.Loading
+  height: 100vh
+  height: -webkit-fill-available
+  height: 100svh
+  width: 100%
+  padding: 0
+  margin: 0
+  display: flex
+  align-items: center
+  justify-content: center
+
+  &__container
+    width: auto !important
+    max-width: none !important
+
+  &__typography
+    font-size: 24px
+    font-weight: bold
+    display: flex
+    gap: 10px
+
+    & > *
+      opacity: 0
+
+    &-0
+      & > *:first-child
+        color: var(--accent)

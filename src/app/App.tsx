@@ -3,7 +3,7 @@ import Lenis from "lenis";
 
 import { Router, RouteSectionProps } from "@solidjs/router";
 
-import { Footer, Header } from "@/widgets";
+import { Footer, Header, Loading } from "@/widgets";
 import { Poster } from "@/features";
 
 import { footerItems, headerItems } from "@/shared/config";
@@ -12,11 +12,11 @@ import { routes } from "./routes";
 
 const Layout: Component<RouteSectionProps<unknown>> = (props) => {
   return (
-    <>
+    <Loading>
       <Header items={headerItems} before={<Poster />} />
       {props.children}
       <Footer items={footerItems} />
-    </>
+    </Loading>
   );
 };
 
