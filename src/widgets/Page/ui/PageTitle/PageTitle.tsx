@@ -59,6 +59,17 @@ const PageTitle: Component<PageTitleProps> = (props) => {
     window.removeEventListener("scroll", onHandleScroll);
   });
 
+  onMount(() => {
+    if (!textRef) return;
+
+    animate(textRef, {
+      opacity: [0, 1],
+      scale: [0.95, 1],
+      translateY: [50, 0],
+      ease: "inOutBack",
+    });
+  });
+
   return (
     <Section
       class={"PageTitle"}

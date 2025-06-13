@@ -48,6 +48,15 @@ const Poster: Component<PosterProps> = () => {
     window.removeEventListener("scroll", onScroll);
   });
 
+  onMount(() => {
+    if (!divRef) return;
+
+    animate(divRef, {
+      opacity: [0, 1],
+      translateY: [-50, 0],
+    });
+  });
+
   return (
     <div
       ref={(el) => (divRef = el)}

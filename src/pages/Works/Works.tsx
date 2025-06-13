@@ -1,17 +1,18 @@
-import "./Home.sass";
+import "./Works.sass";
 
 import { type Component, type JSX } from "solid-js";
 
 import { Section, PageTitle } from "@/widgets";
 
-interface HomeProps extends JSX.HTMLAttributes<HTMLElement> {}
+interface WorksProps extends JSX.HTMLAttributes<HTMLElement> {}
 
-const Home: Component<HomeProps> = () => {
+const Works: Component<WorksProps> = () => {
   return (
     <>
       <PageTitle>
-        <span class={"Home__accent"}>I'm Dmitry —</span> an experienced frontend
-        developer simplifying complexity & delivering impactful solutions
+        <span class={"Works__accent"}>I'm Dmitry —</span> an experienced
+        frontend developer simplifying complexity & delivering impactful
+        solutions
       </PageTitle>
       <Section fullScreen>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab adipisci
@@ -35,4 +36,4 @@ const Home: Component<HomeProps> = () => {
   );
 };
 
-export default Home;
+export default Works;

@@ -1,9 +1,24 @@
 import { type Component, onMount } from "solid-js";
 import Lenis from "lenis";
 
-import { Router } from "@solidjs/router";
+import { Router, RouteSectionProps } from "@solidjs/router";
+
+import { Footer, Header } from "@/widgets";
+import { Poster } from "@/features";
+
+import { footerItems, headerItems } from "@/shared/config";
 
 import { routes } from "./routes";
+
+const Layout: Component<RouteSectionProps<unknown>> = (props) => {
+  return (
+    <>
+      <Header items={headerItems} before={<Poster />} />
+      {props.children}
+      <Footer items={footerItems} />
+    </>
+  );
+};
 
 const App: Component = () => {
   const lenis = new Lenis({
@@ -19,7 +34,7 @@ const App: Component = () => {
     requestAnimationFrame(smoothRaf);
   });
 
-  return <Router>{routes}</Router>;
+  return <Router root={Layout}>{routes}</Router>;
 };
 
 export default App;

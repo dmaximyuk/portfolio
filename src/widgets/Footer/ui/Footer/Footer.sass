@@ -5,10 +5,34 @@
   padding-top: 180px
   padding-bottom: 60px
 
-  &__container
+  &__header
+    color: #00000080
+    letter-spacing: 0
+    text-transform: none
+    margin-top: 0
+    margin-bottom: 0
+    font-family: Manrope, sans-serif
+    font-size: 16px
+    font-weight: 600
+    line-height: 109%
+    text-decoration: none
+
+  &__top
     display: flex
     gap: 72px
 
+  &__bottom
+    margin-top: 60px
+
+  &__copyright
+    display: flex
+    gap: 16px
+    font:
+      size: 14px
+      weight: 500
+
+
+  &__container
     &--after, &--before
       display: flex
       width: 100%
@@ -26,6 +50,13 @@
       max-width: 37%
 
   &__links
+    width: calc((100% / 2) - 24px)
+
+    &, & > ul
+      display: flex
+      flex-direction: column
+      gap: 20px
+
     &-item
       list-style: none
 
@@ -33,6 +64,9 @@
       text-decoration: none
       transition: opacity .2s cubic-bezier(.55, .055, .675, .19)
       color: var(--font-color)
+      font:
+        size: 16px
+        weight: 500
 
       &:hover
         opacity: .45
