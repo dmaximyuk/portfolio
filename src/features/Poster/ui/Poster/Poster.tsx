@@ -3,6 +3,8 @@ import "./Poster.sass";
 import { type Component, type JSX, onMount, onCleanup } from "solid-js";
 import { animate } from "animejs";
 
+import { AnimatedShow } from "@/shared/ui";
+
 import { PhotoMe } from "@/shared/assets/photos";
 import { VideoMe } from "@/shared/assets/video";
 
@@ -10,7 +12,7 @@ interface PosterProps extends JSX.HTMLAttributes<HTMLElement> {}
 
 const Poster: Component<PosterProps> = () => {
   let ticking = false;
-  let divRef: HTMLDivElement | null = null;
+  let divRef: HTMLElement | null = null;
 
   const handleScroll = () => {
     if (!divRef) return;
@@ -48,17 +50,13 @@ const Poster: Component<PosterProps> = () => {
     window.removeEventListener("scroll", onScroll);
   });
 
-  onMount(() => {
-    if (!divRef) return;
-
-    animate(divRef, {
-      opacity: [0, 1],
-      translateY: [-50, 0],
-    });
-  });
-
   return (
-    <div
+    <AnimatedShow
+      Component={"div"}
+      animationParams={{
+        opacity: [0, 1],
+        translateY: [-50, 0],
+      }}
       ref={(el) => (divRef = el)}
       class={"Poster"}
       style={{
@@ -75,7 +73,7 @@ const Poster: Component<PosterProps> = () => {
       >
         <source src={VideoMe} type={"video/mp4"} />
       </video>
-    </div>
+    </AnimatedShow>
   );
 };
 

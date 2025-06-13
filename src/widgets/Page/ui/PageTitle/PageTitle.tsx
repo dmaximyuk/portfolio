@@ -4,6 +4,7 @@ import { onCleanup, onMount, type Component, type JSX } from "solid-js";
 import { animate } from "animejs";
 
 import { Section } from "@/widgets";
+import { AnimatedShow } from "@/shared/ui";
 
 interface PageTitleProps
   extends Omit<JSX.HTMLAttributes<HTMLElement>, "children"> {
@@ -59,26 +60,25 @@ const PageTitle: Component<PageTitleProps> = (props) => {
     window.removeEventListener("scroll", onHandleScroll);
   });
 
-  onMount(() => {
-    if (!textRef) return;
-
-    animate(textRef, {
-      opacity: [0, 1],
-      scale: [0.95, 1],
-      translateY: [50, 0],
-      ease: "inOutBack",
-    });
-  });
-
   return (
     <Section
       class={"PageTitle"}
       containerClass={"PageTitle__container"}
       fullScreen
     >
-      <h1 ref={(r) => (textRef = r)} class={"PageTitle__title"}>
+      <AnimatedShow
+        Component={"h1"}
+        animationParams={{
+          opacity: [0, 1],
+          scale: [0.95, 1],
+          translateY: [50, 0],
+          ease: "inOutBack",
+        }}
+        ref={(r) => (textRef = r)}
+        class={"PageTitle__title"}
+      >
         {props.children}
-      </h1>
+      </AnimatedShow>
     </Section>
   );
 };

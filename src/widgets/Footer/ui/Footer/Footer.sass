@@ -21,8 +21,14 @@
     display: flex
     gap: 72px
 
+    +media-up("md")
+      flex-direction: column
+
   &__bottom
     margin-top: 60px
+
+    +media-up("md")
+      margin-top: 72px
 
   &__copyright
     display: flex
@@ -30,6 +36,9 @@
     font:
       size: 14px
       weight: 500
+
+    +media-up("md")
+      justify-content: center
 
 
   &__container
@@ -49,13 +58,33 @@
       gap: 18px
       max-width: 37%
 
+      +media-up("xl")
+        flex-wrap: nowrap
+        flex-direction: column
+        max-width: 37%
+
+      +media-up("md")
+        max-width: none
+
   &__links
     width: calc((100% / 2) - 24px)
+    +media-up("lg")
+      margin-bottom: 18.5px
+
+    +media-up("md")
+      width: 100%
 
     &, & > ul
       display: flex
       flex-direction: column
       gap: 20px
+
+      +media-up("lg")
+        gap: 16px
+
+      +media-up("md")
+        text-align: center
+        width: 100%
 
     &-item
       list-style: none
@@ -67,6 +96,9 @@
       font:
         size: 16px
         weight: 500
+
+      +media-up("lg")
+        font-size: 14px
 
       &:hover
         opacity: .45
@@ -81,31 +113,46 @@
     line-height: 33px
     text-decoration: none
 
+    +media-up("md")
+      text-align: center
+      width: 100%
+      font-size: 20px
+
     &--accent
       color: #939393
 
 
   &__title
-    color: #000
+    color: var(--font-color)
     letter-spacing: -2px
     margin-top: 0
     margin-bottom: 0
-    font-family: Manrope, sans-serif
     font-size: 74px
     font-weight: 500
     line-height: 115%
-    text-decoration: none
-    
+
+    +media-up("lg")
+      font-size: 60px
+
+    +media-up("md")
+      text-align: center
+      width: 100%
+
   &__email
-    color: #000
+    color: var(--font-color)
     margin-top: 40px
     margin-bottom: 0
-    font-family: Manrope, sans-serif
-    font-size: 31px
+    font-size: 32px
     font-weight: 500
     line-height: 109%
     text-decoration: underline
     transition: opacity .2s cubic-bezier(.25, .46, .45, .94)
+
+    +media-up("md")
+      font-size: 24px
+      text-align: center
+      width: 100%
+      margin-top: 20px
 
     &:hover
       opacity: .45
