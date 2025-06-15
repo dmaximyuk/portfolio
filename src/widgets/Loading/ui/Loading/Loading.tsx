@@ -9,7 +9,7 @@ import {
   Switch,
   Match,
 } from "solid-js";
-import { animate, createTimeline, stagger } from "animejs";
+import { createTimeline, stagger } from "animejs";
 
 import { Section } from "@/widgets";
 
@@ -34,9 +34,6 @@ const Loading: Component<LoadingProps> = (props) => {
         delay: stagger(100, { start: 250 }),
         ease: "inOutBack",
       })
-      .add("#loading-char-str-0", {
-        x: [0, -15],
-      })
       .add("#loading-char-str-1", {
         opacity: [0, 1],
         y: [50, 0],
@@ -45,19 +42,25 @@ const Loading: Component<LoadingProps> = (props) => {
         delay: stagger(100, { start: 250 }),
         ease: "inOutBack",
       })
-      .add("#loading-char-str-1", {
-        x: [0, 15],
-      })
-      .add("#loading-char-str-2", {
-        opacity: [0, 1],
-        x: [100, 15],
-        delay: stagger(100, { start: 250 }),
-        ease: "inOutBack",
-      })
-      .call(() => setTimeout(() => setShowChildren(true), 1000));
+      .add(
+        "#loading-char-str-0",
+        {
+          x: [0, -15],
+        },
+        3350,
+      )
+      .add(
+        "#loading-char-str-1",
+        {
+          x: [0, 15],
+        },
+        3350,
+      )
+
+      .call(() => setTimeout(() => setShowChildren(true), 1250));
   });
 
-  if (showChildren() || localStorage.getItem("loading") === "0") {
+  if (showChildren() || localStorage.getItem("load") === "0") {
     return props.children;
   }
 

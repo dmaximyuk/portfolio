@@ -1,6 +1,6 @@
 import "./PageTitle.sass";
 
-import { onCleanup, onMount, type Component, type JSX } from "solid-js";
+import { type Component, type JSX, onCleanup, onMount } from "solid-js";
 import { animate } from "animejs";
 
 import { Section } from "@/widgets";
